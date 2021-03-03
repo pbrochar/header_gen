@@ -19,14 +19,11 @@ $(NAME): $(OBJ)
 %.o: %.c
 	$(CC) -I$(INC_DIR) -o $@ -c $<
 
-run : all
-	rm -rf $(OBJ)
-	./$(NAME)
-
 clean:
 	rm -rf $(OBJ)
 
 fclean: clean
+	rm -rf lib/libft.a
 	rm -rf $(NAME)
 
 re: fclean all
