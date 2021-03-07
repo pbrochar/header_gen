@@ -30,7 +30,7 @@ int check_args(int argc, char **argv)
 	{
         if (check_ext(argv[i], ".c") == 0)
 	    {
-		    ft_printf("%s is not a valid file.\n", argv);
+		    ft_printf("%s is not a valid file.\n", argv[i]);
 		    return (-1);
 	    }
         i++;

@@ -13,7 +13,7 @@ FLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	cd libft && make && mv libft.a ../lib
+	cd libft/ && make && mv libft.a ../lib/
 	$(CC) -o $(NAME) $(OBJ) $(LIB) $(LIBFT)
 
 %.o: %.c

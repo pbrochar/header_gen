@@ -61,17 +61,26 @@ void parse_and_print(int fd_c, int fd_h, t_list **lst)
 		while (str_is_fct(line) == 1)
 		{
 			before = line[0];
-			if (get_next_line(fd_c, &line) != 1)
+			free(line);
+			if (get_next_line(fd_c, &line) < 1)
+			{
+				free(line);
 				return ;
+			}
 		}
-		copy = line;
-		if (get_next_line(fd_c, &line) != 1)
+		copy = ft_strdup(line);
+		free(line);
+		if (get_next_line(fd_c, &line) < 1)
+		{
+			free(copy);
+			free(line);
 			return ;
+		}
 		after = line[0];
 		if ((before == '}' || before == '\0') && (after == '{') && (line_is_not_main(copy) == 0))
 			ft_lstadd_back(lst, ft_lstnew(ft_strdup(copy)));
-		free(line);
+	
 		free(copy);
+		free(line);
 	}
-	return ;
 }

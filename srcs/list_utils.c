@@ -30,21 +30,13 @@ int add_line_in_list(char **argv, int argc, int fd_h, t_list **lst)
 
 void		rem_lst(t_list **lst)
 {
-	t_list	*temp;
 	t_list	*prev;
 
-	temp = *lst;
-	prev = NULL;
-	while (temp)
+	while (*lst != NULL)
 	{
-
-		if (prev)
-			prev->next = temp->next;
-		else
-			*lst = temp->next;
-		free(temp->content);
-		free(temp);
-		prev = temp;
-		temp = temp->next;
+		prev = *lst;
+		*lst = (*lst)->next;
+		free(prev->content);
+		free(prev);
 	}
 }
