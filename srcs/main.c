@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 		return (1);
 	add_line_in_list(args, fd_h, &lst);
 	sort_ascii_list(&lst);
-	print_list_in_header(&opt, lst, fd_h);
+	print_list_in_header(args, &opt, lst, fd_h);
 	ft_putstr_fd("\n#endif", fd_h);
 	close(fd_h);
 	rem_lst(&lst);

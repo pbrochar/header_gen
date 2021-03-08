@@ -16,6 +16,7 @@ static int	ft_compare(char *str1, char *str2)
 	}
 	return (*str1 - *str2);
 }
+
 static void	ft_lstswap(char **str1, char **str2)
 {
 	char *c;

@@ -79,7 +79,6 @@ void parse_and_print(int fd_c, int fd_h, t_list **lst)
 		after = line[0];
 		if ((before == '}' || before == '\0') && (after == '{') && (line_is_not_main(copy) == 0))
 			ft_lstadd_back(lst, ft_lstnew(ft_strdup(copy)));
-	
 		free(copy);
 		free(line);
 	}

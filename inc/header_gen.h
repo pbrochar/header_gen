@@ -16,6 +16,7 @@ typedef struct  s_args
 	char    **argvalue;
 	int     argcount;
 	int     c_opt;
+    int     p_opt;
 }               t_args;
 
 typedef struct  s_hgen
@@ -33,7 +34,7 @@ int check_access_c(char *argv);
 int ft_isspace(char c);
 int print_line_in_header(char *line, int fd);
 void sort_ascii_list(t_list **lst);
-void print_list_in_header(t_hgen *opt, t_list *lst, int fd_h);
+void print_list_in_header(t_args args,t_hgen *opt, t_list *lst, int fd_h);
 int add_line_in_list(t_args args, int fd_h, t_list **lst);
 void rem_lst(t_list **lst);
 error_t parse_opt(int key, char *arg, struct argp_state *state);

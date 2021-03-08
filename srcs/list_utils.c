@@ -1,10 +1,12 @@
 #include "header_gen.h"
 
-void print_list_in_header(t_hgen *opt, t_list *lst, int fd_h)
+void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
 {
     while (lst)
 	{
 		print_line_in_header(lst->content, fd_h);
+		if (args.p_opt == 1)
+			printf("%s\n", lst->content);
 		opt->count++;
 		lst = lst->next;
 	}
