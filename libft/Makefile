@@ -4,7 +4,7 @@ PF_DIR = ./ft_printf
 GNL_DIR = ./get_next_line
 SRCS_DIR = ./srcs
 
-INCLUDE_DIR = ./includes
+INCLUDE_DIR = ./inc
 
 SRCS = $(wildcard $(SRCS_DIR)/*.c)
 SRCS_PF = $(wildcard $(SRCS_DIR)/$(PF_DIR)/*.c)

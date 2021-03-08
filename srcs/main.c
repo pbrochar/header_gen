@@ -8,6 +8,7 @@ int main(int argc, char **argv)
 	t_list *lst;
 
 	i = 1;
+	lst = NULL;
 	if (check_args(argc, argv) == -1)
 		return (1);
 	fd_h = check_access_and_create(argc, argv);

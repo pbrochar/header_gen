@@ -21,6 +21,7 @@ $(NAME): $(OBJ)
 
 clean:
 	rm -rf $(OBJ)
+	cd libft/ && make clean
 
 fclean: clean
 	rm -rf lib/libft.a
