@@ -36,10 +36,10 @@ static void	ft_lstswap(char **str1, char **str2)
 /*
 ** Sort linked list's elements in ascii order
 */
-void sort_ascii_list(t_list **lst)
+void sort_ascii_list(t_header_list **lst)
 {
-    t_list *temp;
-    t_list *temp2;
+    t_header_list *temp;
+    t_header_list *temp2;
 
     temp = *lst;
     while(temp)

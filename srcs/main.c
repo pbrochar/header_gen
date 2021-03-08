@@ -5,7 +5,7 @@ int main(int argc, char **argv)
 	int		fd_h;
 	int		fd_c;
 	int		i;
-	t_list	*lst;
+	t_header_list	*lst;
 	t_args	args;
 	t_hgen	opt;
 

@@ -3,7 +3,7 @@
 /*
 ** Print all the prototype in the list to the header
 */
-void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
+void print_list_in_header(t_args args, t_hgen *opt, t_header_list *lst, int fd_h)
 {
 	if (args.a_opt == 1)
 		print_a_opt(args, opt, fd_h);
@@ -21,7 +21,7 @@ void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
 /*
 ** Open all .c files, and put the prototype in linked list 
 */
-int add_line_in_list(t_args args, int fd_h, t_list **lst)
+int add_line_in_list(t_args args, int fd_h, t_header_list **lst)
 {
     int fd_c;
     int i;
@@ -33,7 +33,7 @@ int add_line_in_list(t_args args, int fd_h, t_list **lst)
 		    i++;
 	    if((fd_c = open(args.argvalue[i], O_RDONLY)) == -1)
 		    return (1);
-	    parse_and_print(fd_c, fd_h, lst);
+	    parse_and_print(fd_c, fd_h, lst, args.argvalue[i]);
 	    close(fd_c);
 	    i++;
     }
@@ -43,14 +43,16 @@ int add_line_in_list(t_args args, int fd_h, t_list **lst)
 /*
 ** Free the list and content
 */
-void		rem_lst(t_list **lst)
+void		rem_lst(t_header_list **lst)
 {
-	t_list	*prev;
+	t_header_list	*prev;
 
 	while (*lst != NULL)
 	{
 		prev = *lst;
 		*lst = (*lst)->next;
+		if (prev->file_name)
+			free(prev->file_name);
 		free(prev->content);
 		free(prev);
 	}
