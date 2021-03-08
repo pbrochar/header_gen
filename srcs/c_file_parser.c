@@ -92,9 +92,7 @@ void parse_and_print(int fd_c, int fd_h, t_header_list **lst, char *name_file)
 		}
 		after = line[0];
 		if ((before == '}' || before == '\0') && (after == '{') && (line_is_not_main(copy) == 0))
-		{
 			header_lstadd_back(lst, header_lstnew(ft_strdup(copy), ft_strdup(name_file)));
-		}
 		free(copy);
 		free(line);
 	}

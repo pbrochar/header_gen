@@ -57,3 +57,31 @@ void		rem_lst(t_header_list **lst)
 		free(prev);
 	}
 }
+
+void	header_lstadd_back(t_header_list **alst, t_header_list *new)
+{
+	t_header_list *plst;
+
+	if (alst && *alst)
+	{
+		plst = *alst;
+		while (plst->next)
+			plst = plst->next;
+		plst->next = new;
+	}
+	else if (alst)
+		*alst = new;
+}
+
+t_header_list	*header_lstnew(void *content, void *name)
+{
+	t_header_list	*new;
+
+	new = (t_header_list *)malloc(sizeof(t_header_list));
+	if (new == NULL)
+		return (NULL);
+	new->content = content;
+	new->file_name = name;
+	new->next = NULL;
+	return (new);
+}
