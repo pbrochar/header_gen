@@ -46,8 +46,7 @@ void			ft_putcharac(t_varg *ftpf);
 void			ft_putpct(t_varg *ftpf);
 void			ft_putunsigned(t_varg *ftpf);
 
-void			init_s_varg(t_varg *ftpf, const char *format,
-va_list *parameters);
+void			init_s_varg(t_varg *ftpf, const char *format, va_list *parameters);
 void			init_s_flags(t_flags *flags);
 int				pf_istype(char c);
 int				pf_isflag(char c);

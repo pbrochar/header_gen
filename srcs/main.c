@@ -20,7 +20,8 @@ int main(int argc, char **argv)
 	if (fd_h == -1)
 		return (1);
 	add_line_in_list(args, fd_h, &lst);
-	sort_ascii_list(&lst);
+	if (args.s_opt == 1)
+		sort_ascii_list(&lst);
 	print_list_in_header(args, &opt, lst, fd_h);
 	ft_putstr_fd("\n#endif", fd_h);
 	close(fd_h);

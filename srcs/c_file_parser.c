@@ -1,8 +1,8 @@
 #include "header_gen.h"
 
-static int str_is_fct(char *line)
+int str_is_fct(char *line)
 {
-	if (ft_strncmp(line, "static", 6) == 0)
+	if (ft_strncmp(line, "static", 6) == 0 || ft_strncmp(line, "typedef", 7) == 0)
 		return (1);
 	if ((line[0] >= 7 && line[0] <= 13) || line[0] == 32)
 		return (1);
@@ -31,7 +31,9 @@ int print_line_in_header(char *line, int fd)
     while (ft_isspace(line[i]))
         i++;
 	ft_putstr_fd(&line[i], fd);
-	ft_putstr_fd(";\n", fd);
+	if (line[ft_strlen(line) - 1] != ';')
+		ft_putchar_fd(';', fd);
+	ft_putchar_fd('\n', fd);
 	return (0);
 }
 
