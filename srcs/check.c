@@ -1,5 +1,8 @@
 #include "header_gen.h"
 
+/*
+** Check if the file's extension is the good one (.c or .h)
+*/
 int check_ext(const char *file_name, const char *ext)
 {
 	int		i;
@@ -16,6 +19,9 @@ int check_ext(const char *file_name, const char *ext)
 	return (0); 
 }
 
+/*
+** Check if args are the good files with their extensions
+*/
 int check_args(t_args args)
 {
     int i;
@@ -51,6 +57,10 @@ int check_args(t_args args)
 	return (0);
 }
 
+/*
+** Check if header file exist, and if not create with base.
+** Base = "#ifndef NAME_H" "# define NAME_H"
+*/
 int check_access_and_create(t_args args)
 {
     int fd_h;
@@ -68,6 +78,9 @@ int check_access_and_create(t_args args)
     return (-1);
 }
 
+/*
+** Function who check is prog can access to file
+*/
 int check_access_c(char *argv)
 {
 	if (access(argv, F_OK) != 0)

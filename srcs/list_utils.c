@@ -1,5 +1,8 @@
 #include "header_gen.h"
 
+/*
+** Print all the prototype in the list to the header
+*/
 void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
 {
 	if (args.a_opt == 1)
@@ -15,6 +18,9 @@ void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
 	}
 }
 
+/*
+** Open all .c files, and put the prototype in linked list 
+*/
 int add_line_in_list(t_args args, int fd_h, t_list **lst)
 {
     int fd_c;
@@ -34,6 +40,9 @@ int add_line_in_list(t_args args, int fd_h, t_list **lst)
     return (0);
 }
 
+/*
+** Free the list and content
+*/
 void		rem_lst(t_list **lst)
 {
 	t_list	*prev;

@@ -1,5 +1,9 @@
 #include "header_gen.h"
 
+/*
+** Try to open file.h
+** If success, put the file descriptor in opt struct
+*/
 int open_fd_header_exist(t_args args, t_hgen *opt)
 {
     if ((opt->fd_header = open(args.argvalue[args.argcount - 2], O_RDONLY)) == -1)

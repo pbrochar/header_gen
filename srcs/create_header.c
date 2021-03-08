@@ -1,5 +1,10 @@
 #include "header_gen.h"
 
+/*
+** Print the header's name
+** Uppercase letters
+** NAME_H
+*/
 static void print_header_name(int fd, char *name)
 {
 	int i;
@@ -17,6 +22,10 @@ static void print_header_name(int fd, char *name)
 	}
 }
 
+/*
+** Create header file with O_CREAT, with Read and Write permission (O_RDWR)
+** Return the file descriptor of the new file
+*/
 int create_header_file(char *file_name)
 {
 	int fd;
@@ -29,6 +38,9 @@ int create_header_file(char *file_name)
 	return (fd);
 }
 
+/*
+** Print in header : "#ifndef" and "# define"
+*/
 int print_header_base(int fd, char *name)
 {
 	ft_putstr_fd("#ifndef ", fd);

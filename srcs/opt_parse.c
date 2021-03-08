@@ -19,7 +19,7 @@ static struct argp argp = {options, parse_opt, args_doc, doc};
 /* 
 ** Init structs t_hgen and t_args
 ** c/p/a_opt A is a state variable allowing to transmit to the program the options
-** Argcount is like argc bu tonly for args
+** Argcount is like argc but only for args (Does not contain program name and options)
 ** Count is the number of prototype find and put in file, use with 'c' option. 
 */
 void init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv)

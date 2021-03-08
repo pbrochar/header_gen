@@ -1,5 +1,8 @@
 #include "header_gen.h"
 
+/* 
+** Check if char is space
+*/
 int ft_isspace(char c)
 {
     if ((c >= 9 && c <= 13) || c == 32)
@@ -17,6 +20,10 @@ static int	ft_compare(char *str1, char *str2)
 	return (*str1 - *str2);
 }
 
+/*
+** Swap two char *
+** Use for ASCII sort
+*/
 static void	ft_lstswap(char **str1, char **str2)
 {
 	char *c;
@@ -26,6 +33,9 @@ static void	ft_lstswap(char **str1, char **str2)
 	*str1 = c;
 }
 
+/*
+** Sort linked list's elements in ascii order
+*/
 void sort_ascii_list(t_list **lst)
 {
     t_list *temp;

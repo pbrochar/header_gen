@@ -1,5 +1,8 @@
 #include "header_gen.h"
 
+/*
+** Check if string is a function
+*/
 int str_is_fct(char *line)
 {
 	if (ft_strncmp(line, "static", 6) == 0 || ft_strncmp(line, "typedef", 7) == 0)
@@ -11,6 +14,9 @@ int str_is_fct(char *line)
 	return (1);
 }
 
+/*
+** Function who format the prototype and print in the header
+*/
 int print_line_in_header(char *line, int fd)
 {
 	int i;
@@ -37,6 +43,9 @@ int print_line_in_header(char *line, int fd)
 	return (0);
 }
 
+/*
+** Check if the protype is "int main(...)"
+*/
 static int line_is_not_main(char *line)
 {
 	int i;
@@ -51,6 +60,9 @@ static int line_is_not_main(char *line)
 	return (0);
 }
 
+/*
+** Parse the file and put all prototypes in linked list
+*/
 void parse_and_print(int fd_c, int fd_h, t_list **lst)
 {
 	char before;
