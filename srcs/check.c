@@ -16,26 +16,21 @@ int check_ext(const char *file_name, const char *ext)
 	return (0); 
 }
 
-int check_args(int argc, char **argv)
+int check_args(t_args args)
 {
     int i;
 
-    i = 1;
-	if (argc < 3)
+    i = 0;
+    while (i < (args.argcount - 1))
 	{
-		ft_printf("Open a .c file\n");
-		return (-1);
-	}
-    while (i < argc -1)
-	{
-        if (check_ext(argv[i], ".c") == 0)
+        if (check_ext(args.argvalue[i], ".c") == 0)
 	    {
-		    ft_printf("%s is not a valid file.\n", argv[i]);
+		    ft_printf("%s is not a valid file.\n", args.argvalue[i]);
 		    return (-1);
 	    }
         i++;
     }
-    if (check_ext(argv[i], ".h") == 0)
+    if (check_ext(args.argvalue[i], ".h") == 0)
     {
         ft_printf("last arg need to be a .h file's name\n");
         return (-1);
@@ -43,20 +38,20 @@ int check_args(int argc, char **argv)
 	return (0);
 }
 
-int check_access_and_create(int argc, char **argv)
+int check_access_and_create(t_args args)
 {
     int fd_h;
 
-	if (access(argv[argc - 1], F_OK) != 0)
+	if (access(args.argvalue[args.argcount - 1], F_OK) != 0)
 	{
-		fd_h = create_header_file(argv[argc -1]);
+		fd_h = create_header_file(args.argvalue[args.argcount - 1]);
 		if (fd_h == -1)
 			return (-1);
-		print_header_base(fd_h, argv[argc -1]);
+		print_header_base(fd_h, args.argvalue[args.argcount - 1]);
         return (fd_h);
     }
 	else
-		ft_printf("%s already exit\n", argv[argc -1]);
+		ft_printf("%s already exit\n", args.argvalue[args.argcount - 1]);
     return (-1);
 }
 

@@ -1,25 +1,26 @@
 #include "header_gen.h"
 
-void print_list_in_header(t_list *lst, int fd_h)
+void print_list_in_header(t_hgen *opt, t_list *lst, int fd_h)
 {
     while (lst)
 	{
 		print_line_in_header(lst->content, fd_h);
+		opt->count++;
 		lst = lst->next;
 	}
 }
 
-int add_line_in_list(char **argv, int argc, int fd_h, t_list **lst)
+int add_line_in_list(t_args args, int fd_h, t_list **lst)
 {
     int fd_c;
     int i;
 
-    i = 1;
-    while (i < (argc - 1))
+    i = 0;
+    while (i < (args.argcount - 1))
 	{
-	    if (check_access_c(argv[i]) == -1)
+	    if (check_access_c(args.argvalue[i]) == -1)
 		    i++;
-	    if((fd_c = open(argv[i], O_RDONLY)) == -1)
+	    if((fd_c = open(args.argvalue[i], O_RDONLY)) == -1)
 		    return (1);
 	    parse_and_print(fd_c, fd_h, lst);
 	    close(fd_c);
