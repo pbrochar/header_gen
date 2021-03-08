@@ -19,6 +19,11 @@ $(NAME): $(OBJ)
 %.o: %.c
 	$(CC) -I$(INC_DIR) -o $@ -c $<
 
+test: $(OBJ)
+	rm *.h
+	$(CC) -o $(NAME) $(OBJ) $(LIB) $(LIBFT)
+	clear
+
 clean:
 	rm -rf $(OBJ)
 	cd libft/ && make clean

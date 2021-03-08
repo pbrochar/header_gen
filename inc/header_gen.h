@@ -17,11 +17,13 @@ typedef struct  s_args
 	int     argcount;
 	int     c_opt;
     int     p_opt;
+    int     a_opt;
 }               t_args;
 
 typedef struct  s_hgen
 {
     int count;
+    int fd_header;
 }               t_hgen;
 
 int check_ext(const char *file_name, const char *ext);
@@ -39,6 +41,7 @@ int add_line_in_list(t_args args, int fd_h, t_list **lst);
 void rem_lst(t_list **lst);
 error_t parse_opt(int key, char *arg, struct argp_state *state);
 void init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv);
+int open_fd_header_exist(t_args args, t_hgen *opt);
 
 
 

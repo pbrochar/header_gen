@@ -19,9 +19,13 @@ int check_ext(const char *file_name, const char *ext)
 int check_args(t_args args)
 {
     int i;
+	int a;
 
     i = 0;
-    while (i < (args.argcount - 1))
+	a = 1;
+	if (args.a_opt == 1)
+		a = 2;
+    while (i < (args.argcount - a))
 	{
         if (check_ext(args.argvalue[i], ".c") == 0)
 	    {
@@ -30,11 +34,20 @@ int check_args(t_args args)
 	    }
         i++;
     }
-    if (check_ext(args.argvalue[i], ".h") == 0)
-    {
-        ft_printf("last arg need to be a .h file's name\n");
-        return (-1);
-    }
+	if (args.a_opt == 1) 
+	{
+		if ((access(args.argvalue[i], F_OK) || check_ext(args.argvalue[i], ".h") == 0))
+		{
+			ft_printf("Can't access to %s\n", args.argvalue[i]);
+			return (-1);
+		}
+		i++;
+	}
+	if (check_ext(args.argvalue[i], ".h") == 0)
+	{
+		ft_printf("last arg need to be a .h file's name\n");
+		return (-1);
+	}
 	return (0);
 }
 
