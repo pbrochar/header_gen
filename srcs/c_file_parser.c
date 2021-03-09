@@ -5,13 +5,22 @@
 */
 int str_is_fct(char *line)
 {
+	int i;
+
+	i = 0;
+	if (ft_isspace(line[0]) || line[0] == '{' || !ft_isalpha(line[0]))
+		return (1);
+	while (line[i] != '(' && line[i])
+		i++;
+	if (!line[i])
+		return (1);
+	while (line[i] != ')' && line[i])
+		i++;
+	if (!line[i])
+		return (1);
 	if (ft_strncmp(line, "static", 6) == 0 || ft_strncmp(line, "typedef", 7) == 0)
 		return (1);
-	if ((line[0] >= 7 && line[0] <= 13) || line[0] == 32)
-		return (1);
-	if (ft_isalpha(line[0]))
-		return (0);
-	return (1);
+	return (0);
 }
 
 /*
@@ -63,18 +72,14 @@ static int line_is_not_main(char *line)
 /*
 ** Parse the file and put all prototypes in linked list
 */
-void parse_and_print(int fd_c, int fd_h, t_list **lst, char *name)
+void parse_and_print(int fd_c, int fd_h, t_list **lst, char *file_name)
 {
-	char before;
-	char after;
 	char *line;
-	char *copy;
 
 	while (get_next_line(fd_c, &line) == 1)
 	{
 		while (str_is_fct(line) == 1)
 		{
-			before = line[0];
 			free(line);
 			if (get_next_line(fd_c, &line) < 1)
 			{
@@ -82,18 +87,20 @@ void parse_and_print(int fd_c, int fd_h, t_list **lst, char *name)
 				return ;
 			}
 		}
-		copy = ft_strdup(line);
-		free(line);
-		if (get_next_line(fd_c, &line) < 1)
-		{
-			free(copy);
-			free(line);
-			return ;
-		}
-		after = line[0];
-		if ((before == '}' || before == '\0') && (after == '{') && (line_is_not_main(copy) == 0))
-			ft_lstadd_back(lst, ft_lstnew(ft_strdup(copy)));
-		free(copy);
+		if ((line_is_not_main(line) == 0))
+			ft_lstadd_back(lst, ft_lstnew(malloc_struct_proto(line, file_name)));
 		free(line);
 	}
+}
+
+t_prot *malloc_struct_proto(char *prototype, char *file_name)
+{
+	t_prot *new;
+
+	new = malloc(sizeof(t_prot));
+	if (new == NULL)
+		return (NULL);
+	new->prototype = ft_strdup(prototype);
+	new->file_name = ft_strdup(file_name);
+	return (new);
 }

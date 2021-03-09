@@ -5,13 +5,16 @@
 */
 void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
 {
+	char *proto;
+
 	if (args.a_opt == 1)
 		print_a_opt(args, opt, fd_h);
     while (lst)
 	{
-		print_line_in_header(lst->content, fd_h);
+		proto = ((t_prot *)(lst->content))->prototype;
+		print_line_in_header(proto, fd_h);
 		if (args.v_opt == 1)
-			ft_printf("%s\n", lst->content);
+			ft_printf("%s\n", proto);
 		if (args.c_opt == 1)
 			opt->count++;
 		lst = lst->next;
@@ -33,7 +36,7 @@ int add_line_in_list(t_args args, int fd_h, t_list **lst)
 		    i++;
 	    if((fd_c = open(args.argvalue[i], O_RDONLY)) == -1)
 		    return (1);
-	    parse_and_print(fd_c, fd_h, lst, args.argvalue);
+	    parse_and_print(fd_c, fd_h, lst, args.argvalue[i]);
 	    close(fd_c);
 	    i++;
     }

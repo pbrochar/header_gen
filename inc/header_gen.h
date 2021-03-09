@@ -29,6 +29,12 @@ typedef struct  s_hgen
     t_list  *lst_a_opt;
 }               t_hgen;
 
+typedef struct  s_prot
+{
+    char    *prototype;
+    char    *file_name;
+}               t_prot;
+
 int check_ext(const char *file_name, const char *ext);
 int check_args(t_args args);
 int check_access_and_create(t_args args);
@@ -47,6 +53,6 @@ void init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv);
 int open_fd_header_exist(t_args args, t_hgen *opt);
 void print_a_opt(t_args args, t_hgen *opt, int fd_h);
 int str_is_fct(char *line);
-
+t_prot *malloc_struct_proto(char *prototype, char *file_name);
 
 #endif

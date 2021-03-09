@@ -31,7 +31,7 @@ void print_a_opt(t_args args, t_hgen *opt, int fd_h)
 	while (ft_strncmp(line, "#endif", 6) != 0)
     {
         if (str_is_fct(line) == 0)
-            ft_lstadd_back(&(opt->lst_a_opt), ft_lstnew(ft_strdup(line)));
+            ft_lstadd_back(&(opt->lst_a_opt), ft_lstnew(malloc_struct_proto(line, args.argvalue[args.argcount - 2])));
         else
         {
             ft_putstr_fd(line, fd_h);
@@ -49,7 +49,7 @@ void print_a_opt(t_args args, t_hgen *opt, int fd_h)
     ft_putstr_fd("\n*/\n", fd_h);
     while(opt->lst_a_opt)
     {
-        print_line_in_header(opt->lst_a_opt->content, fd_h);
+        print_line_in_header(((t_prot *)(opt->lst_a_opt->content))->prototype, fd_h);
         opt->lst_a_opt = opt->lst_a_opt->next;
     }
     rem_lst(&(opt->lst_a_opt));
