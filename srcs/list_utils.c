@@ -2,9 +2,22 @@
 
 void print_file_name(char *name, int fd)
 {
-	ft_putstr_fd("\n/*\n**\tfrom ", fd);
-    ft_putstr_fd(name, fd);
-    ft_putstr_fd("\n*/\n", fd);
+	int len;
+	int i;
+
+	i = 0;
+	len = ft_strlen(name) + 10;
+	ft_putstr_fd("\n/*", fd);
+	while (i++ < len - 1)
+		ft_putchar_fd('*', fd);
+	ft_putstr_fd("\n** from ", fd);
+	ft_putstr_fd(name, fd);
+	ft_putstr_fd(" **", fd);
+	ft_putchar_fd('\n', fd);
+	i = 0;
+	while (i++ < len)
+		ft_putchar_fd('*', fd);
+    ft_putstr_fd("*/\n", fd);
 }
 /*
 ** Print all the prototype in the list to the header
