@@ -63,7 +63,7 @@ static int line_is_not_main(char *line)
 /*
 ** Parse the file and put all prototypes in linked list
 */
-void parse_and_print(int fd_c, int fd_h, t_header_list **lst, char *name_file)
+void parse_and_print(int fd_c, int fd_h, t_list **lst, char *name)
 {
 	char before;
 	char after;
@@ -92,9 +92,7 @@ void parse_and_print(int fd_c, int fd_h, t_header_list **lst, char *name_file)
 		}
 		after = line[0];
 		if ((before == '}' || before == '\0') && (after == '{') && (line_is_not_main(copy) == 0))
-		{
-			header_lstadd_back(lst, header_lstnew(ft_strdup(copy), ft_strdup(name_file)));
-		}
+			ft_lstadd_back(lst, ft_lstnew(ft_strdup(copy)));
 		free(copy);
 		free(line);
 	}

@@ -65,7 +65,5 @@ int			nb_len_hex(int n);
 void		int_precision(t_varg *ftpf, t_flags *flags);
 void		unsigned_precision(t_varg *ftpf, t_flags *flags);
 void		print_a_opt(t_args args, t_hgen *opt, int fd_h);
-void		header_lstadd_back(t_header_list **alst, t_header_list *new);
-t_header_list		*header_lstnew(void *content, void *name);
 
 #endif

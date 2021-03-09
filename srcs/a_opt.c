@@ -31,7 +31,7 @@ void print_a_opt(t_args args, t_hgen *opt, int fd_h)
 	while (ft_strncmp(line, "#endif", 6) != 0)
     {
         if (str_is_fct(line) == 0)
-            header_lstadd_back(&(opt->lst_a_opt), header_lstnew(ft_strdup(line), ft_strdup(args.argvalue[args.argcount - 2])));
+            ft_lstadd_back(&(opt->lst_a_opt), ft_lstnew(ft_strdup(line)));
         else
         {
             ft_putstr_fd(line, fd_h);
