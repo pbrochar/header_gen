@@ -34,8 +34,7 @@ void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
 	print_file_name(file_name, fd_h);
     while (lst)
 	{
-	
-		if (ft_strncmp(file_name, ((t_prot *)(lst->content))->file_name, ft_strlen(file_name)) != 0)
+		if (args.f_opt == 1 && ft_strncmp(file_name, ((t_prot *)(lst->content))->file_name, ft_strlen(file_name)) != 0)
 		{
 			file_name = ((t_prot *)(lst->content))->file_name;
 			print_file_name(file_name, fd_h);		

@@ -6,12 +6,13 @@
 const char *argp_program_version = VERSION;
 const char *argp_program_bug_address = MAIL;
 static char doc[] = DOC;
-static char args_doc[] = "source1.c ... sourceN.c header.h";
+static char args_doc[] = "source1.c ... sourceN.c header_name.h";
 static struct argp_option options[] = {
-	{"count", 'c', 0, 0, "Print the number of prototype create by hgen"},
-    {"verbose", 'v', 0, 0, "Print each prototypes create by hgen in std output"},
-    {"append", 'a', 0, 0, "Create a new header file with prototype of other header file"},
-	{"sort", 's', 0, 0, "Sorts the different protypes in ascii order"},
+	{"count", 'c', 0, 0, "Print the number of prototype create by hgen.\n"},
+    {"verbose", 'v', 0, 0, "Print each prototypes create by hgen in std output.\n"},
+    {"append", 'a', 0, 0, "Create a new header file with prototype of other header file. Usage is then hgen [OPT...] source1.c ... sourceN.c header_file.h header_ name.h\n"},
+	{"sort", 's', 0, 0, "Sorts the different protypes in ascii order.\n"},
+	{"from", 'f', 0, 0, "Put in the header file the source file as a comment above the prototypes. If this option is used with the -s option, the prototypes are sorted for each source file.\n"},
 	{0}
 };
 static struct argp argp = {options, parse_opt, args_doc, doc};
@@ -28,6 +29,7 @@ void init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv)
     args->v_opt = 0;
     args->a_opt = 0;
 	args->s_opt = 0;
+	args->f_opt = 0;
 	args->argcount = 0;
     opt->count = 0;
 	opt->lst_a_opt = NULL;
@@ -51,6 +53,9 @@ error_t parse_opt(int key, char *arg, struct argp_state *state)
             break;
 		case 'c':
 			arguments->c_opt = 1;
+			break;
+		case 'f':
+			arguments->f_opt = 1;
 			break;
 		case 's':
 			arguments->s_opt = 1;

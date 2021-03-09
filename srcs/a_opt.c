@@ -44,7 +44,8 @@ void print_a_opt(t_args args, t_hgen *opt, int fd_h)
 	close(opt->fd_header);
     if (args.s_opt == 1)
         sort_ascii_list(&(opt->lst_a_opt));
-    print_file_name(args.argvalue[args.argcount - 2], fd_h);
+    if (args.f_opt == 1)
+        print_file_name(args.argvalue[args.argcount - 2], fd_h);
     while(opt->lst_a_opt)
     {
         print_line_in_header(((t_prot *)(opt->lst_a_opt->content))->prototype, fd_h);

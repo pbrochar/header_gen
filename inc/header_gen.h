@@ -20,6 +20,7 @@ typedef struct  s_args
     int     v_opt;
     int     a_opt;
     int     s_opt;
+    int     f_opt;
 }               t_args;
 
 typedef struct  s_hgen
@@ -54,5 +55,6 @@ int open_fd_header_exist(t_args args, t_hgen *opt);
 void print_a_opt(t_args args, t_hgen *opt, int fd_h);
 int str_is_fct(char *line);
 t_prot *malloc_struct_proto(char *prototype, char *file_name);
+void print_file_name(char *name, int fd);
 
 #endif
