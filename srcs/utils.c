@@ -21,18 +21,17 @@ static int	ft_compare(char *str1, char *str2)
 }
 
 /*
-** Swap two char *
+** Swap two t_prot *
 ** Use for ASCII sort
 */
-static void	ft_lstswap(char **str1, char **str2)
+static void	ft_lstswap(t_list **prot1, t_list **prot2)
 {
-	char *c;
+    void *c;
 
-	c = *str2;
-	*str2 = *str1;
-	*str1 = c;
+	c = (*prot1)->content;
+    (*prot1)->content = (*prot2)->content;
+    (*prot2)->content = c;
 }
-
 /*
 ** Sort linked list's elements in ascii order
 */
@@ -40,15 +39,17 @@ void sort_ascii_list(t_list **lst)
 {
     t_list *temp;
     t_list *temp2;
+    char *proto;
+    char *proto2;
 
     temp = *lst;
     while(temp)
-    {  
+    { 
         temp2 = temp->next;
         while (temp2)
         {
-            if (ft_strncmp(temp->content, temp2->content, ft_strlen(temp2->content)) < 0)
-                ft_lstswap((char **)&(temp->content), (char **)&(temp2->content));
+            if (ft_compare(((t_prot *)temp->content)->prototype, ((t_prot *)temp2->content)->prototype) > 0)
+                ft_lstswap(&temp, &temp2);
             temp2 = temp2->next;
         }
         temp = temp->next;

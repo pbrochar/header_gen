@@ -15,10 +15,10 @@ int main(int argc, char **argv)
 	if (check_args(args) == -1)
 		return (1);
 	fd_h = check_access_and_create(args);
-	if (args.a_opt == 1)
-		open_fd_header_exist(args, &opt);
 	if (fd_h == -1)
 		return (1);
+	if (args.a_opt == 1)
+		open_fd_header_exist(args, &opt);
 	add_line_in_list(args, fd_h, &lst);
 	if (args.s_opt == 1)
 		sort_ascii_list(&lst);
