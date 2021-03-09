@@ -49,7 +49,10 @@ void sort_ascii_list(t_list **lst)
         while (temp2)
         {
             if (ft_compare(((t_prot *)temp->content)->prototype, ((t_prot *)temp2->content)->prototype) > 0)
-                ft_lstswap(&temp, &temp2);
+            {
+                if (ft_compare(((t_prot *)temp->content)->file_name, ((t_prot *)temp2->content)->file_name) == 0)
+                    ft_lstswap(&temp, &temp2);
+            }
             temp2 = temp2->next;
         }
         temp = temp->next;
