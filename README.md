@@ -59,4 +59,4 @@ This project is a tool for creating headers. It has been programmed to help me d
 It is possible that this project has bugs and malfunctions.
 Please make a pull request or send me a mail at pbrochar@student.42.fr
 ### Version
-0.1.0
+0.1.1

@@ -7,7 +7,7 @@
 # include <stdio.h>
 # include <argp.h>
 
-# define VERSION "hgen 0.1.0"
+# define VERSION "hgen 0.1.1"
 # define MAIL "<pbrochar@student.42.fr>"
 # define DOC "hgen -- a program to generate header files"
 
@@ -63,6 +63,7 @@ int			check_access_c(char *argv);
 int			check_args(t_args args);
 int			check_ext(const char *file_name, const char *ext);
 int         check_h_file(t_args args);
+
 /*
 ** from srcs/create_header.c
 */
