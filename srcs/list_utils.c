@@ -1,74 +1,59 @@
 #include "header_gen.h"
 
-void print_file_name(char *name, int fd)
-{
-	int len;
-	int i;
 
-	i = 0;
-	len = ft_strlen(name) + 10;
-	ft_putstr_fd("\n/*", fd);
-	while (i++ < len - 1)
-		ft_putchar_fd('*', fd);
-	ft_putstr_fd("\n** from ", fd);
-	ft_putstr_fd(name, fd);
-	ft_putstr_fd(" **", fd);
-	ft_putchar_fd('\n', fd);
-	i = 0;
-	while (i++ < len)
-		ft_putchar_fd('*', fd);
-    ft_putstr_fd("*/\n", fd);
-}
 /*
-** Print all the prototype in the list to the header
+** Swap two t_prot *
+** Use for ASCII sort
 */
-void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
+static void	ft_lstswap(t_list **prot1, t_list **prot2)
 {
-	char *proto;
-	char *file_name;
+    void *c;
 
-	
-	if (args.a_opt == 1)
-		print_a_opt(args, opt, fd_h);
-	file_name = ((t_prot *)(lst->content))->file_name;
-	print_file_name(file_name, fd_h);
-    while (lst)
-	{
-		if (args.f_opt == 1 && ft_strncmp(file_name, ((t_prot *)(lst->content))->file_name, ft_strlen(file_name)) != 0)
-		{
-			file_name = ((t_prot *)(lst->content))->file_name;
-			print_file_name(file_name, fd_h);		
-		}
-		proto = ((t_prot *)(lst->content))->prototype;
-		print_line_in_header(proto, fd_h);
-		if (args.v_opt == 1)
-			ft_printf("%s\n", proto);
-		if (args.c_opt == 1)
-			opt->count++;
-		lst = lst->next;
-	}
+	c = (*prot1)->content;
+    (*prot1)->content = (*prot2)->content;
+    (*prot2)->content = c;
 }
 
 /*
-** Open all .c files, and put the prototype in linked list 
+** Sort linked list's elements in ascii order
 */
-int add_line_in_list(t_args args, int fd_h, t_list **lst)
+void sort_ascii_list(t_list **lst)
 {
-    int fd_c;
-    int i;
+    t_list *temp;
+    t_list *temp2;
+    char *proto;
+    char *proto2;
 
-    i = 0;
-    while (i < (args.argcount - 1))
-	{
-	    if (check_access_c(args.argvalue[i]) == -1)
-		    i++;
-	    if((fd_c = open(args.argvalue[i], O_RDONLY)) == -1)
-		    return (1);
-	    parse_and_print(fd_c, fd_h, lst, args.argvalue[i]);
-	    close(fd_c);
-	    i++;
+    temp = *lst;
+    while(temp)
+    { 
+        temp2 = temp->next;
+        while (temp2)
+        {
+            if (ft_compare(((t_prot *)temp->content)->prototype, ((t_prot *)temp2->content)->prototype) > 0)
+            {
+                if (ft_compare(((t_prot *)temp->content)->file_name, ((t_prot *)temp2->content)->file_name) == 0)
+                    ft_lstswap(&temp, &temp2);
+            }
+            temp2 = temp2->next;
+        }
+        temp = temp->next;
     }
-    return (0);
+}
+
+/*
+** Malloc a struct for linked list who contain the prototype and file's name.
+*/
+t_prot *malloc_struct_proto(char *prototype, char *file_name)
+{
+	t_prot *new;
+
+	new = malloc(sizeof(t_prot));
+	if (new == NULL)
+		return (NULL);
+	new->prototype = ft_strdup(prototype);
+	new->file_name = ft_strdup(file_name);
+	return (new);
 }
 
 /*
@@ -78,10 +63,12 @@ void		rem_lst(t_list **lst)
 {
 	t_list	*prev;
 
-	while (*lst != NULL)
+	while (*lst)
 	{
 		prev = *lst;
 		*lst = (*lst)->next;
+		free(((t_prot *)prev->content)->file_name);
+		free(((t_prot *)prev->content)->prototype);
 		free(prev->content);
 		free(prev);
 	}

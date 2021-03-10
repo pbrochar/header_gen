@@ -34,7 +34,6 @@ typedef struct	s_flags
 	int		len;
 	int		eq_type;
 	char	type;
-
 }				t_flags;
 
 void			ft_puthex_min(t_varg *ftpf);

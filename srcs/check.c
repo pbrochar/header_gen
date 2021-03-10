@@ -79,7 +79,7 @@ int check_access_and_create(t_args args)
 }
 
 /*
-** Function who check is prog can access to file
+** Function who check if prog can access to file
 */
 int check_access_c(char *argv)
 {

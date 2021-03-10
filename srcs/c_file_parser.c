@@ -1,27 +1,5 @@
 #include "header_gen.h"
 
-/*
-** Check if string is a function
-*/
-int str_is_fct(char *line)
-{
-	int i;
-
-	i = 0;
-	if (ft_isspace(line[0]) || line[0] == '{' || !ft_isalpha(line[0]))
-		return (1);
-	while (line[i] != '(' && line[i])
-		i++;
-	if (!line[i])
-		return (1);
-	while (line[i] != ')' && line[i])
-		i++;
-	if (!line[i])
-		return (1);
-	if (ft_strncmp(line, "static", 6) == 0 || ft_strncmp(line, "typedef", 7) == 0)
-		return (1);
-	return (0);
-}
 
 /*
 ** Function who format the prototype and print in the header
@@ -72,7 +50,7 @@ static int line_is_not_main(char *line)
 /*
 ** Parse the file and put all prototypes in linked list
 */
-void parse_and_print(int fd_c, int fd_h, t_list **lst, char *file_name)
+void parse_and_put_list(int fd_c, int fd_h, t_list **lst, char *file_name)
 {
 	char *line;
 
@@ -93,14 +71,3 @@ void parse_and_print(int fd_c, int fd_h, t_list **lst, char *file_name)
 	}
 }
 
-t_prot *malloc_struct_proto(char *prototype, char *file_name)
-{
-	t_prot *new;
-
-	new = malloc(sizeof(t_prot));
-	if (new == NULL)
-		return (NULL);
-	new->prototype = ft_strdup(prototype);
-	new->file_name = ft_strdup(file_name);
-	return (new);
-}

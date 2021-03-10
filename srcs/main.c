@@ -18,12 +18,14 @@ int main(int argc, char **argv)
 	if (fd_h == -1)
 		return (1);
 	if (args.a_opt == 1)
+	{
 		open_fd_header_exist(args, &opt);
+		execute_a_opt(args, &opt, fd_h);
+	}
 	add_line_in_list(args, fd_h, &lst);
 	if (args.s_opt == 1)
 		sort_ascii_list(&lst);
 	print_list_in_header(args, &opt, lst, fd_h);
-	ft_putstr_fd("\n#endif", fd_h);
 	close(fd_h);
 	rem_lst(&lst);
 	if (args.c_opt == 1)

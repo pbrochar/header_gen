@@ -48,6 +48,6 @@ int print_header_base(int fd, char *name)
 	ft_putchar_fd('\n', fd);
 	ft_putstr_fd("# define ", fd);
 	print_header_name(fd, name);
-	ft_putstr_fd("\n", fd);
+	ft_putstr_fd("\n\n", fd);
 	return (0);
 }
