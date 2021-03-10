@@ -7,7 +7,7 @@
 # include <stdio.h>
 # include <argp.h>
 
-# define VERSION "hgen 0.0.2"
+# define VERSION "hgen 0.1.0"
 # define MAIL "<pbrochar@student.42.fr>"
 # define DOC "hgen -- a program to generate header files"
 

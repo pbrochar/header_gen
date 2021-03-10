@@ -6,13 +6,13 @@
 const char *argp_program_version = VERSION;
 const char *argp_program_bug_address = MAIL;
 static char doc[] = DOC;
-static char args_doc[] = "source1.c ... sourceN.c header_name.h";
+static char args_doc[] = "<source1.c> <...> <sourceN.c> <header_name.h>";
 static struct argp_option options[] = {
-	{"count", 'c', 0, 0, "Print the number of prototype create by hgen.\n"},
+	{"count", 'c', 0, 0, "Shows the number of prototypes put in the file.\n"},
     {"verbose", 'v', 0, 0, "Print each prototypes create by hgen in std output.\n"},
-    {"append", 'a', 0, 0, "Create a new header file with prototype of other header file. Usage is then hgen [OPT...] source1.c ... sourceN.c header_file.h header_ name.h\n"},
-	{"sort", 's', 0, 0, "Sorts the different protypes in ascii order.\n"},
-	{"from", 'f', 0, 0, "Put in the header file the source file as a comment above the prototypes. If this option is used with the -s option, the prototypes are sorted for each source file.\n"},
+    {"append", 'a', 0, 0, "Allows to create a new header file, from an existing header file and .c source files. Usage : hgen [...] <sources.c> <existant_header_file.h> <header_name.h>\n"},
+	{"sort", 's', 0, 0, "Sorts the different protypes in ASCII order.\n"},
+	{"from", 'f', 0, 0, "Put above the prototype in the header file the source file as a comment. If this option is used with the -s option, the prototypes are sorted for each source file.\n"},
 	{0}
 };
 static struct argp argp = {options, parse_opt, args_doc, doc};
