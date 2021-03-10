@@ -52,9 +52,12 @@ If the ~/.local/bin folder does not exist, create it with :
 ```bash
 mkdir -p ~/.local/bin
 ```
+and put the PATH in your .zshrc or .bashrc file.
 ### About the author
 Student @ 42Paris.
 ### About the project
 This project is a tool for creating headers. It has been programmed to help me during the realization of my school's projects.
 It is possible that this project has bugs and malfunctions.
 Please make a pull request or send me a mail at pbrochar@student.42.fr
+### Version
+0.1.0
