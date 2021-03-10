@@ -50,7 +50,10 @@ t_prot *malloc_struct_proto(char *prototype, char *file_name)
 
 	new = malloc(sizeof(t_prot));
 	if (new == NULL)
+    {
+        ft_printf("Problem with dynamic memory allocation. The behavior of the program is unpredictable.\n");
 		return (NULL);
+    }
 	new->prototype = ft_strdup(prototype);
 	new->file_name = ft_strdup(file_name);
 	return (new);

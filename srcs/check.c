@@ -57,6 +57,15 @@ int check_args(t_args args)
 	return (0);
 }
 
+int check_h_file(t_args args)
+{
+	if (access(args.argvalue[args.argcount - 1], F_OK) == 0)
+	{
+		ft_printf("%s already exit\n", args.argvalue[args.argcount - 1]);
+		return (-1);
+	}
+	return (0);
+}
 /*
 ** Check if header file exist, and if not create with base.
 ** Base = "#ifndef NAME_H" "# define NAME_H"
@@ -75,7 +84,7 @@ int check_access_and_create(t_args args)
     }
 	else
 		ft_printf("%s already exit\n", args.argvalue[args.argcount - 1]);
-    return (-1);
+	return (-1);
 }
 
 /*
@@ -83,7 +92,7 @@ int check_access_and_create(t_args args)
 */
 int check_access_c(char *argv)
 {
-	if (access(argv, F_OK) != 0)
+	if (access(argv, R_OK) != 0)
 		return (-1);
 	return (0);
 }

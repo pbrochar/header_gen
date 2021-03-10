@@ -50,26 +50,26 @@ static int line_is_not_main(char *line)
 /*
 ** Parse the file and put all prototypes in linked list
 */
-void parse_and_put_list(int fd_c, int fd_h, t_list **lst, char *file_name)
+int parse_and_put_list(int fd_c, t_list **lst, char *file_name)
 {
-	char *line;
+	char 	*line;
+	int		count_fct;
 
+	count_fct = 0;
 	while (get_next_line(fd_c, &line) == 1)
 	{
-		while (str_is_fct(line) == 1)
-		{
+		if (str_is_fct(line) == 1)
 			free(line);
-			if (get_next_line(fd_c, &line) < 1)
-			{
-				free(line);
-				return ;
-			}
-		}
-		if ((line_is_not_main(line) == 0))
+		else if ((line_is_not_main(line) == 0))
+		{
 			ft_lstadd_back(lst, ft_lstnew(malloc_struct_proto(line, file_name)));
-		free(line);
+			count_fct++;
+			free(line);
+		}
+		
 	}
-	if (!lst || !(*lst))
-		return ;
+	if (count_fct == 0)
+		return (-1);
+	return (0);
 }
 

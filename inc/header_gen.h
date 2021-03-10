@@ -45,14 +45,15 @@ void	execute_a_opt(t_args args, t_hgen *opt, int fd_h);
 /*
 ** from srcs/basics_fct.c
 */
-int			add_line_in_list(t_args args, int fd_h, t_list **lst);
+int			add_line_in_list(t_args args, t_list **lst);
 void		print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h);
-int check_c_files(t_args args);
+int         check_c_files(t_args args);
+
 /*
 ** from srcs/c_file_parser.c
 */
 int			print_line_in_header(char *line, int fd);
-void		parse_and_put_list(int fd_c, int fd_h, t_list **lst, char *file_name);
+int		    parse_and_put_list(int fd_c, t_list **lst, char *file_name);
 
 /*
 ** from srcs/check.c
@@ -61,7 +62,7 @@ int			check_access_and_create(t_args args);
 int			check_access_c(char *argv);
 int			check_args(t_args args);
 int			check_ext(const char *file_name, const char *ext);
-
+int         check_h_file(t_args args);
 /*
 ** from srcs/create_header.c
 */

@@ -37,12 +37,14 @@ void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
 /*
 ** Open all .c files, and put the prototype in linked list 
 */
-int add_line_in_list(t_args args, int fd_h, t_list **lst)
+int add_line_in_list(t_args args, t_list **lst)
 {
     int fd_c;
+	int empty_file;
     int i;
     int a;
 
+	empty_file = 0;
     i = 0;
     a = 1;
     if (args.a_opt == 1)
@@ -53,7 +55,16 @@ int add_line_in_list(t_args args, int fd_h, t_list **lst)
 		    i++;
 	    if((fd_c = open(args.argvalue[i], O_RDONLY)) == -1)
 		    return (-1);
-	    parse_and_put_list(fd_c, fd_h, lst, args.argvalue[i]);
+	    if (parse_and_put_list(fd_c, lst, args.argvalue[i]) == -1)
+		{
+			empty_file++;
+			ft_printf("No prototype found in %s.\n", args.argvalue[i]);
+			if (empty_file == (args.argcount - a))
+			{
+				ft_printf("No file contains prototypes. Abort.\n");
+				return (-1);
+			}
+		}
 	    close(fd_c);
 	    i++;
     }
