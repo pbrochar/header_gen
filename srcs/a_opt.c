@@ -14,22 +14,24 @@ int open_fd_header_exist(t_args args, t_hgen *opt)
     return (0);
 }
 
-static void put_in_list_and_print(t_args args, t_hgen *opt, int fd_h)
+static int put_in_list_and_print(t_args args, t_hgen *opt, int fd_h)
 {
     char    *line;
-    char    before;
+    int     ret;
     
     line = NULL;
-    get_next_line(opt->fd_header, &line);
+    if ((ret = get_next_line(opt->fd_header, &line)) < 1)
+        return (-1);
     while (ft_strncmp(line, "# define", 8) != 0)
     {
         free(line);
-        get_next_line(opt->fd_header, &line);
+        if ((ret = get_next_line(opt->fd_header, &line)) < 1)
+            return (-1);
     }
-    before = line[0];
     free(line);
-    get_next_line(opt->fd_header, &line);
-    while (ft_strncmp(line, "#endif", 6) != 0)
+    if ((ret = get_next_line(opt->fd_header, &line)) == 0)
+        return (-2);
+    while (ft_strncmp(line, "#endif", 6) != 0 && ret == 1)
     {
         if (str_is_fct(line) == 0)
             ft_lstadd_back(&(opt->lst_a_opt), ft_lstnew(malloc_struct_proto(line, args.argvalue[args.argcount - 2])));
@@ -38,12 +40,12 @@ static void put_in_list_and_print(t_args args, t_hgen *opt, int fd_h)
             ft_putstr_fd(line, fd_h);
             ft_putchar_fd('\n', fd_h);
         }
-        before = line[0];
         free(line);
-        get_next_line(opt->fd_header, &line);
+        ret = get_next_line(opt->fd_header, &line);
     }
     free(line);
     close(opt->fd_header);
+    return (0);
 }
 
 static void print_list_a_opt(t_hgen *opt, int fd_h)
@@ -57,8 +59,14 @@ static void print_list_a_opt(t_hgen *opt, int fd_h)
 
 void execute_a_opt(t_args args, t_hgen *opt, int fd_h)
 {
-    put_in_list_and_print(args, opt, fd_h);
-    if (args.s_opt == 1)
+    int ret;
+
+    ret = put_in_list_and_print(args, opt, fd_h);
+    if (ret == -1)
+        ft_printf("Bad file, please check %s. Generate .h file from sources.\n", args.argvalue[args.argcount - 2]);
+    else if (ret == -2)
+        ft_printf("Nothing found in %s, please check. Generate .h file from sources.\n", args.argvalue[args.argcount - 2]);
+    if (args.s_opt == 1 && opt->lst_a_opt)
         sort_ascii_list(&(opt->lst_a_opt));
     if (args.f_opt == 1)
         print_file_name(args.argvalue[args.argcount - 2], fd_h);

@@ -26,7 +26,6 @@ int	ft_compare(char *str1, char *str2)
 */
 void print_file_name(char *name, int fd)
 {
-
 	ft_putstr_fd("\n/*\n** from ", fd);
 	ft_putstr_fd(name, fd);
 	ft_putstr_fd("\n*/\n", fd);

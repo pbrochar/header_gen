@@ -39,8 +39,8 @@ typedef struct  s_prot
 /*
 ** from srcs/a_opt.c
 */
-int			open_fd_header_exist(t_args args, t_hgen *opt);
-void		execute_a_opt(t_args args, t_hgen *opt, int fd_h);
+int		open_fd_header_exist(t_args args, t_hgen *opt);
+void	execute_a_opt(t_args args, t_hgen *opt, int fd_h);
 
 /*
 ** from srcs/basics_fct.c
@@ -79,7 +79,7 @@ void		sort_ascii_list(t_list **lst);
 ** from srcs/opt_parse.c
 */
 error_t		parse_opt(int key, char *arg, struct argp_state *state);
-void		init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv);
+int		init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv);
 
 /*
 ** from srcs/utils.c

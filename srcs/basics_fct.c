@@ -8,6 +8,8 @@ void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
 	char *proto;
 	char *file_name;
 
+	if (!lst)
+		return ;
     if (args.f_opt == 1)
     {
         file_name = ((t_prot *)(lst->content))->file_name;

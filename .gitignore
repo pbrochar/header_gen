@@ -2,3 +2,4 @@ lib/libft.a
 srcs/*.o
 libft/srcs/*.o
 ./hgen
+test.h

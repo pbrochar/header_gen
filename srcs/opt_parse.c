@@ -23,7 +23,7 @@ static struct argp argp = {options, parse_opt, args_doc, doc};
 ** Argcount is like argc but only for args (Does not contain program name and options)
 ** Count is the number of prototype find and put in file, use with 'c' option. 
 */
-void init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv)
+int init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv)
 {
 	args->c_opt = 0;
     args->v_opt = 0;
@@ -33,7 +33,9 @@ void init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv)
 	args->argcount = 0;
     opt->count = 0;
 	opt->lst_a_opt = NULL;
-	argp_parse(&argp, argc, argv, 0, 0, args);
+	if (argp_parse(&argp, argc, argv, 0, 0, args) != 0)
+		return (-1);
+	return (0);
 }
 
 /*

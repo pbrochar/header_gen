@@ -11,15 +11,16 @@ int main(int argc, char **argv)
 
 	i = 1;
 	lst = NULL;
-	init_args_parse(&opt, &args, argc, argv);
+	if (init_args_parse(&opt, &args, argc, argv) == -1)
+		return (-1);
 	if (check_args(args) == -1)
-		return (1);
-	fd_h = check_access_and_create(args);
-	if (fd_h == -1)
-		return (1);
+		return (-1);
+	if ((fd_h = check_access_and_create(args)) == -1)
+		return (-1);
 	if (args.a_opt == 1)
 	{
-		open_fd_header_exist(args, &opt);
+		if (open_fd_header_exist(args, &opt) == -1)
+			return (-1);
 		execute_a_opt(args, &opt, fd_h);
 	}
 	add_line_in_list(args, fd_h, &lst);

@@ -69,5 +69,7 @@ void parse_and_put_list(int fd_c, int fd_h, t_list **lst, char *file_name)
 			ft_lstadd_back(lst, ft_lstnew(malloc_struct_proto(line, file_name)));
 		free(line);
 	}
+	if (!lst || !(*lst))
+		return ;
 }
 
