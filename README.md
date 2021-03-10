@@ -10,6 +10,7 @@ hgen [OPTION...] <source1.c> <...> <sourceN.c> <header_name.h>
   -a, --append               Allows to create a new header file, from an
                              existing header file and .c source files.                       
 ```
+Usage :
 ```bash
 hgen -a [OPTION] <sources.c> <...> <sourceN.c> <existant_header_file.h> <header_name.h>
 ```
