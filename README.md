@@ -12,7 +12,7 @@ hgen [OPTION...] <source1.c> <...> <sourceN.c> <header_name.h>
                              
 ```
 ```bash
-hgen [...] <sources.c> <existant_header_file.h> <header_name.h>
+hgen -a [OPTION] <sources.c> <...> <sourceN.c> <existant_header_file.h> <header_name.h>
 ```
 ---
 ```
