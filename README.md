@@ -25,6 +25,7 @@ hgen -a [OPTION] <sources.c> <...> <sourceN.c> <existant_header_file.h> <header_
                              with the -s option, the prototypes are sorted for
                              each source file.
 ```
+Example :
 ```c
 /*
 ** from src.c
