@@ -8,8 +8,7 @@ hgen [OPTION...] <source1.c> <...> <sourceN.c> <header_name.h>
 ## Options
 ```
   -a, --append               Allows to create a new header file, from an
-                             existing header file and .c source files.
-                             
+                             existing header file and .c source files.                       
 ```
 ```bash
 hgen -a [OPTION] <sources.c> <...> <sourceN.c> <existant_header_file.h> <header_name.h>
@@ -24,7 +23,6 @@ hgen -a [OPTION] <sources.c> <...> <sourceN.c> <existant_header_file.h> <header_
                              source file as a comment. If this option is used
                              with the -s option, the prototypes are sorted for
                              each source file.
-
 ```
 ```c
 /*
