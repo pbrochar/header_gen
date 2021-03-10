@@ -1,6 +1,5 @@
 # header_gen
 header_gen is a tool to create and document header files from sources.
-
 ## Usage
 ```
 hgen [OPTION...] <source1.c> <...> <sourceN.c> <header_name.h>
@@ -53,6 +52,8 @@ If the ~/.local/bin folder does not exist, create it with :
 mkdir -p ~/.local/bin
 ```
 and put the PATH in your .zshrc or .bashrc file.
+## Requirement
+hgen needs **argp** lib *(GNU C Library)*.
 ### About the author
 Student @ 42Paris.
 ### About the project
@@ -61,3 +62,5 @@ It is possible that this project has bugs and malfunctions.
 Please make a pull request or send me a mail at pbrochar@student.42.fr
 ### Version
 0.1.2
+#### Test
+hgen has been tested on **debian** and **xubuntu**
