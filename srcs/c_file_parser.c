@@ -66,8 +66,10 @@ int parse_and_put_list(int fd_c, t_list **lst, char *file_name)
 			count_fct++;
 			free(line);
 		}
-		
+		else
+			free(line);	
 	}
+	free(line);
 	if (count_fct == 0)
 		return (-1);
 	return (0);

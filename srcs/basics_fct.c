@@ -11,17 +11,11 @@ void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
 	if (!lst)
 		return ;
     if (args.f_opt == 1)
-    {
-        file_name = ((t_prot *)(lst->content))->file_name;
-        print_file_name(file_name, fd_h);
-    }
+		file_name = execute_f_opt(lst, fd_h);
     while (lst)
 	{
-		if (args.f_opt == 1 && ft_strncmp(file_name, ((t_prot *)(lst->content))->file_name, ft_strlen(file_name)) != 0)
-		{
-			file_name = ((t_prot *)(lst->content))->file_name;
-			print_file_name(file_name, fd_h);		
-		}
+		if (args.f_opt == 1 && f_opt_compare(file_name, lst) == 1)
+			file_name = execute_f_opt(lst, fd_h);
 		proto = ((t_prot *)(lst->content))->prototype;
 		print_line_in_header(proto, fd_h);
 		if (args.v_opt == 1)

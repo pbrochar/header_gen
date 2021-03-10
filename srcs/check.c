@@ -42,7 +42,13 @@ int check_args(t_args args)
     }
 	if (args.a_opt == 1) 
 	{
-		if ((access(args.argvalue[i], F_OK) || check_ext(args.argvalue[i], ".h") == 0))
+		if (check_ext(args.argvalue[i], ".h") == 0)
+		{
+			ft_printf("You must specify an existing .h file. Usage :\n");
+			ft_printf("hgen -a [OPTION] <sources.c> <...> <sourceN.c> <existant_header_file.h> <header_name.h>\n");
+			return (-1);
+		}
+		if (access(args.argvalue[i], F_OK))
 		{
 			ft_printf("Can't access to %s\n", args.argvalue[i]);
 			return (-1);

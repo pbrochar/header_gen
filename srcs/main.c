@@ -23,12 +23,8 @@ int main(int argc, char **argv)
 		return (-1);
 	if ((fd_h = check_access_and_create(args)) == -1)
 		return (-1);
-	if (args.a_opt == 1)
-	{
-		if (open_fd_header_exist(args, &opt) == -1)
-			return (-1);
-		execute_a_opt(args, &opt, fd_h);
-	}
+	if (args.a_opt == 1 && execute_a_opt(args, &opt, fd_h) == -1)
+		return (-1);
 	if (args.s_opt == 1)
 		sort_ascii_list(&lst);
 	print_list_in_header(args, &opt, lst, fd_h);

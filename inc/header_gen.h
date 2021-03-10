@@ -7,7 +7,7 @@
 # include <stdio.h>
 # include <argp.h>
 
-# define VERSION "hgen 0.1.1"
+# define VERSION "hgen 0.1.2"
 # define MAIL "<pbrochar@student.42.fr>"
 # define DOC "hgen -- a program to generate header files"
 
@@ -39,21 +39,20 @@ typedef struct  s_prot
 /*
 ** from srcs/a_opt.c
 */
-int		open_fd_header_exist(t_args args, t_hgen *opt);
-void	execute_a_opt(t_args args, t_hgen *opt, int fd_h);
+int			execute_a_opt(t_args args, t_hgen *opt, int fd_h);
+int			open_fd_header_exist(t_args args, t_hgen *opt);
 
 /*
 ** from srcs/basics_fct.c
 */
 int			add_line_in_list(t_args args, t_list **lst);
 void		print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h);
-int         check_c_files(t_args args);
 
 /*
 ** from srcs/c_file_parser.c
 */
+int			parse_and_put_list(int fd_c, t_list **lst, char *file_name);
 int			print_line_in_header(char *line, int fd);
-int		    parse_and_put_list(int fd_c, t_list **lst, char *file_name);
 
 /*
 ** from srcs/check.c
@@ -61,14 +60,21 @@ int		    parse_and_put_list(int fd_c, t_list **lst, char *file_name);
 int			check_access_and_create(t_args args);
 int			check_access_c(char *argv);
 int			check_args(t_args args);
+int			check_c_files(t_args args);
 int			check_ext(const char *file_name, const char *ext);
-int         check_h_file(t_args args);
+int			check_h_file(t_args args);
 
 /*
 ** from srcs/create_header.c
 */
 int			create_header_file(char *file_name);
 int			print_header_base(int fd, char *name);
+
+/*
+** from srcs/f_opt.c
+*/
+char		*execute_f_opt(t_list *lst, int fd_h);
+int			f_opt_compare(char *file_name, t_list *lst);
 
 /*
 ** from srcs/list_utils.c
@@ -81,7 +87,7 @@ void		sort_ascii_list(t_list **lst);
 ** from srcs/opt_parse.c
 */
 error_t		parse_opt(int key, char *arg, struct argp_state *state);
-int		init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv);
+int			init_args_parse(t_hgen *opt, t_args *args, int argc, char **argv);
 
 /*
 ** from srcs/utils.c

@@ -66,6 +66,7 @@ void		rem_lst(t_list **lst)
 {
 	t_list	*prev;
 
+    prev = *lst;
 	while (*lst)
 	{
 		prev = *lst;
