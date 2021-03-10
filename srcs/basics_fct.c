@@ -33,6 +33,7 @@ void print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h)
     ft_putstr_fd("\n#endif", fd_h);
 }
 
+
 /*
 ** Open all .c files, and put the prototype in linked list 
 */
@@ -48,10 +49,10 @@ int add_line_in_list(t_args args, int fd_h, t_list **lst)
         a = 2;
     while (i < (args.argcount - a))
 	{
-	    if (check_access_c(args.argvalue[i]) == -1)
+	    while (check_access_c(args.argvalue[i]) == -1)
 		    i++;
 	    if((fd_c = open(args.argvalue[i], O_RDONLY)) == -1)
-		    return (1);
+		    return (-1);
 	    parse_and_put_list(fd_c, fd_h, lst, args.argvalue[i]);
 	    close(fd_c);
 	    i++;

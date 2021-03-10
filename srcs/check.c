@@ -84,9 +84,31 @@ int check_access_and_create(t_args args)
 int check_access_c(char *argv)
 {
 	if (access(argv, F_OK) != 0)
-	{
-		ft_printf("Can't access to %s\n", argv);
 		return (-1);
+	return (0);
+}
+
+int check_c_files(t_args args)
+{
+	int i;
+	int a;
+
+	i = 0;
+	a = 1;
+	if (args.a_opt == 1)
+        a = 2;
+	while (i < (args.argcount - a))
+	{
+	    if (check_access_c(args.argvalue[i]) == -1)
+		{
+			ft_printf("Can't access to %s\n", args.argvalue[i]);
+			if (i == (args.argcount - a) - 1)
+			{
+				ft_printf("No access to source files. Abort.\n");
+				return (-1);
+			}
+		}
+		i++;
 	}
 	return (0);
 }

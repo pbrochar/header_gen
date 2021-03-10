@@ -47,7 +47,7 @@ void	execute_a_opt(t_args args, t_hgen *opt, int fd_h);
 */
 int			add_line_in_list(t_args args, int fd_h, t_list **lst);
 void		print_list_in_header(t_args args, t_hgen *opt, t_list *lst, int fd_h);
-
+int check_c_files(t_args args);
 /*
 ** from srcs/c_file_parser.c
 */
