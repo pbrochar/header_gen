@@ -42,6 +42,14 @@ int fct2(void);
                              output.
 ```
 ---
+## Installation
+```
+make && mv ./hgen ~/.local/bin/
+```
+If the ~/.local/bin folder does not exist, create it with :
+```bash
+mkdir -p ~/.local/bin
+```
 ### About the author
 Student @ 42Paris.
 ### About the project
